@@ -1,0 +1,21 @@
+{
+  "name": "baltimore-crime-stats",
+  "version": "1.0.0",
+  "description": "Baltimore crime statistics based on public 911 call data (https://data.baltimorecity.gov/Public-Safety/911-Police-Calls-for-Service/xviu-ezkt)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Corey Scheideman <coreys1@umbc.edu>",
+  "license": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CMSC447-TEAM-10/baltimore-crime-stats.git"
+  },
+  "dependencies": {
+    "@types/node": "^13.9.8",
+    "ts-postgres": "^1.1.3",
+    "typescript": "^3.8.3"
+  }
+}
