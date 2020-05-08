@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router'
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -12,7 +13,8 @@ const MAIN_COMPONENTS = [NavbarComponent, SidebarComponent, FooterComponent, Das
 @NgModule({
   declarations: MAIN_COMPONENTS,
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: MAIN_COMPONENTS
 })
