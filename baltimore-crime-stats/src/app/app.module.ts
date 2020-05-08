@@ -24,7 +24,10 @@ import { LoginModule } from './login/login.module';
     FormsModule,
 
     // App Modules
-    AppMainModule, MapModule, ChartModule, LoginModule
+    AppMainModule, MapModule, ChartModule, LoginModule,
+
+    // Route
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
