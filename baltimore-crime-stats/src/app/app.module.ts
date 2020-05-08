@@ -1,25 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { FooterComponent } from './footer/footer.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+// module
+import { AppMainModule } from './app-main/app-main.module';
+import { MapModule } from './map/map.module';
+import { ChartModule } from './chart/chart.module';
+import { LoginModule } from './login/login.module';
+
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    SidebarComponent,
-    FooterComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+
+    // App Modules
+    AppMainModule, MapModule, ChartModule, LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
