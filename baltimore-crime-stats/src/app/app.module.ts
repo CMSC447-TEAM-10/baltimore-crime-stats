@@ -23,18 +23,20 @@ import { environment } from 'src/environments/environment';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
 
     // App Modules
     AppMainModule, MapModule, ChartModule, LoginModule,
 
+    // This needs to be imported after all App Modules get imported
+    AppRoutingModule,
+
     // Route
     AppRoutingModule,
 
     // 3rd module
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent]
