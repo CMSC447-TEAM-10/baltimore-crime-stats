@@ -13,6 +13,10 @@ import { MapModule } from './map/map.module';
 import { ChartModule } from './chart/chart.module';
 import { LoginModule } from './login/login.module';
 
+// for firebase
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +31,10 @@ import { LoginModule } from './login/login.module';
     AppMainModule, MapModule, ChartModule, LoginModule,
 
     // Route
-    AppRoutingModule
+    AppRoutingModule,
+
+    // 3rd module
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]
