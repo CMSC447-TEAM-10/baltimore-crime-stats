@@ -19,6 +19,9 @@ import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
+// google map api
+import { GoogleMapsModule } from '@angular/google-maps';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -40,7 +43,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     // 3rd module
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+
+    // google maps module
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

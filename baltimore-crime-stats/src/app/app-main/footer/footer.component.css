@@ -1,5 +1,5 @@
 .app-footer {
-    position: absolute;
+    clear: both;
     padding: 0rem;
     text-align: center;
     z-index: 100;
