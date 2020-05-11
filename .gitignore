@@ -1,6 +1,12 @@
 # Build directory
 build/
 
+#Mac Junk
+.DS_Store
+.fseventsd
+.Trashes
+.Spotlight-V100
+
 # Logs
 logs
 *.log
