@@ -60,7 +60,7 @@ export class MapImplementComponent implements AfterViewInit {
       this.markerArr = [];
     }
 
-    let color = {                             
+    let color = {
       url: "http://maps.google.com/mapfiles/ms/icons/blue.png"
     };
 
@@ -68,12 +68,16 @@ export class MapImplementComponent implements AfterViewInit {
     for (var i = 0; i < this.callData.length; i++) {
       let call: CrimeInfo = this.callData[i];
       if (call.priority === "Low") {
-        this.addMarker(
-          call.location.latitude,
-          call.location.longitude,
-          call.description,
-          color
-        )
+        // only add the marker if location attribute exists
+        // and if longitude and latitude are Numeric
+        if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
+          this.addMarker(
+            call.location.latitude,
+            call.location.longitude,
+            call.description,
+            color
+          )
+        }
       }
     }
 
@@ -87,7 +91,7 @@ export class MapImplementComponent implements AfterViewInit {
       this.markerArr = [];
     }
 
-    let color = {                             
+    let color = {
       url: "http://maps.google.com/mapfiles/ms/icons/yellow.png"
     };
 
@@ -116,19 +120,23 @@ export class MapImplementComponent implements AfterViewInit {
       this.markerArr = [];
     }
 
-    let color = {                             
+    let color = {
       url: "http://maps.google.com/mapfiles/ms/icons/red.png"
     };
 
     for (var i = 0; i < this.callData.length; i++) {
       let call: CrimeInfo = this.callData[i];
       if (call.priority === "High") {
-        this.addMarker(
-          call.location.latitude,
-          call.location.longitude,
-          call.description,
-          color
-        )
+        // only add the marker if location attribute exists
+        // and if longitude and latitude are Numeric
+        if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
+          this.addMarker(
+            call.location.latitude,
+            call.location.longitude,
+            call.description,
+            color
+          )
+        }
       }
     }
 
@@ -141,15 +149,15 @@ export class MapImplementComponent implements AfterViewInit {
       this.markerArr = [];
     }
 
-    let red_color = {                             
+    let red_color = {
       url: "http://maps.google.com/mapfiles/ms/icons/red.png"
     };
 
-    let yellow_color = {                             
+    let yellow_color = {
       url: "http://maps.google.com/mapfiles/ms/icons/yellow.png"
     };
 
-    let blue_color = {                             
+    let blue_color = {
       url: "http://maps.google.com/mapfiles/ms/icons/blue.png"
     };
 
