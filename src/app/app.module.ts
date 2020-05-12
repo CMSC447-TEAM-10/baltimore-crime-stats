@@ -26,7 +26,6 @@ import { GoogleMapsModule } from '@angular/google-maps';
 /* Angular CRUD services */
 import { DatabaseService } from './database/database.service';
 
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -52,9 +51,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     AngularFireDatabaseModule,
 
     // google maps module
-    GoogleMapsModule,
-
-    NgxChartsModule
+    GoogleMapsModule
   ],
   providers: [DatabaseService],
   bootstrap: [AppComponent]
