@@ -44,7 +44,6 @@ export class MapImplementComponent implements AfterViewInit {
         a['$KEY'] = item.key;
         this.callData.push(a as CrimeInfo)
       })
-      console.log(this.callData);
     })
   }
 
@@ -55,7 +54,7 @@ export class MapImplementComponent implements AfterViewInit {
   }
 
   // handling click event
-  setMapOnAll(map) {
+  setMapOnAll(map: google.maps.Map) {
     for (var i = 0; i < this.markerArr.length; i++) {
       this.markerArr[i].setMap(map);
     }
@@ -67,7 +66,7 @@ export class MapImplementComponent implements AfterViewInit {
       this.setMapOnAll(null);
       this.markerArr = [];
     }
-    
+
     // add markers to array
     for (var i = 0; i < this.callData.length; i++) {
       if (this.callData[i].priority === "Low") {
@@ -90,13 +89,17 @@ export class MapImplementComponent implements AfterViewInit {
     }
 
     for (var i = 0; i < this.callData.length; i++) {
-      if (this.callData[i].priority === "Medium" && 
-        this.callData[i].location.latitude !== 0) {
-        this.addMarker(
-          this.callData[i].location.latitude,
-          this.callData[i].location.longitude,
-          this.callData[i].description
-        )
+      let call: CrimeInfo = this.callData[i];
+      if (call.priority === "Medium") {
+        // only add the marker if location attribute exists
+        // and if longitude and latitude are Numeric
+        if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
+          this.addMarker(
+            call.location.latitude,
+            call.location.longitude,
+            call.description
+          )
+        }
       }
     }
 
@@ -108,7 +111,7 @@ export class MapImplementComponent implements AfterViewInit {
       this.setMapOnAll(null);
       this.markerArr = [];
     }
-    
+
     for (var i = 0; i < this.callData.length; i++) {
       if (this.callData[i].priority === "High") {
         this.addMarker(
