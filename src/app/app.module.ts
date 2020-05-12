@@ -13,6 +13,7 @@ import { MapModule } from './map/map.module';
 import { ChartModule } from './chart/chart.module';
 import { LoginModule } from './login/login.module';
 import { CirclechartModule } from './circlechart/circlechart.module';
+import { TreeModule } from './tree/tree.module';
 
 // for firebase
 import { AngularFireModule } from '@angular/fire';
@@ -37,7 +38,8 @@ import { DatabaseService } from './database/database.service';
     FormsModule,
 
     // App Modules
-    AppMainModule, MapModule, ChartModule, LoginModule, CirclechartModule,
+    AppMainModule, MapModule, ChartModule, 
+    LoginModule, CirclechartModule, TreeModule,
 
     // This needs to be imported after all App Modules get imported
     AppRoutingModule,
