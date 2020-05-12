@@ -12,6 +12,7 @@ import { AppMainModule } from './app-main/app-main.module';
 import { MapModule } from './map/map.module';
 import { ChartModule } from './chart/chart.module';
 import { LoginModule } from './login/login.module';
+import { CirclechartModule } from './circlechart/circlechart.module';
 
 // for firebase
 import { AngularFireModule } from '@angular/fire';
@@ -25,6 +26,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
 /* Angular CRUD services */
 import { DatabaseService } from './database/database.service';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -35,7 +38,7 @@ import { DatabaseService } from './database/database.service';
     FormsModule,
 
     // App Modules
-    AppMainModule, MapModule, ChartModule, LoginModule,
+    AppMainModule, MapModule, ChartModule, LoginModule, CirclechartModule,
 
     // This needs to be imported after all App Modules get imported
     AppRoutingModule,
@@ -49,7 +52,9 @@ import { DatabaseService } from './database/database.service';
     AngularFireDatabaseModule,
 
     // google maps module
-    GoogleMapsModule
+    GoogleMapsModule,
+
+    NgxChartsModule
   ],
   providers: [DatabaseService],
   bootstrap: [AppComponent]
