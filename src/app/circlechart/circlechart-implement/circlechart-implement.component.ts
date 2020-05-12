@@ -15,7 +15,7 @@ export class CirclechartImplementComponent implements OnInit {
   callData: CrimeInfo[];
   data: any[];
 
-  constructor(private dbApi: DatabaseService) { 
+  constructor(private dbApi: DatabaseService) {
     this.callData = this.dbApi.GetCalls();
   }
 
@@ -42,7 +42,7 @@ export class CirclechartImplementComponent implements OnInit {
       else {
         non_emergency++;
       }
-    } 
+    }
 
     let chart = am4core.create("chartdiv", am4charts.PieChart);
 
@@ -64,9 +64,9 @@ export class CirclechartImplementComponent implements OnInit {
         "count": high
       }
     ];
-    
+
     let pieSeries = chart.series.push(new am4charts.PieSeries());
-    pieSeries.dataFields.value = "cases";
+    pieSeries.dataFields.value = "count";
     pieSeries.dataFields.category = "priority";
   }
 }
