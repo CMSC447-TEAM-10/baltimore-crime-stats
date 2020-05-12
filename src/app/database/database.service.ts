@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { CrimeInfo, DistrictCounts } from './crime-info.model';
+import { CrimeInfo, DistrictCounts, TimeCount } from './crime-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,6 @@ export class DatabaseService {
   }
 
   /* Get number of calls per district */
-  // This function is async somehow and needs a callback function praram
   GetNumCallsByDistrict(): DistrictCounts[] {
     let districts: DistrictCounts[] = [];
     this.callRef
@@ -50,5 +49,26 @@ export class DatabaseService {
       });
     });
     return districts;
+  }
+
+  /* Get number of calls per date */
+  GetNumCallsByCallDatetime(): TimeCount[] {
+    let calldatetimes: TimeCount[] = [];
+    this.callRef
+    .snapshotChanges()
+    .subscribe(calls => {
+      calls.forEach(item => {
+        let a = <CrimeInfo> item.payload.toJSON();
+        a['$KEY'] = item.key;
+        let calldatetime: Date = new Date(a.calldatetime);
+        let index: number = calldatetimes.findIndex(x => x.calldatetime.getHours() == calldatetime.getHours());
+        if (index === -1) {
+          calldatetimes.push({calldatetime: calldatetime, count: 1});
+        } else {
+          calldatetimes[index].count++;
+        }
+      });
+    });
+    return calldatetimes;
   }
 }

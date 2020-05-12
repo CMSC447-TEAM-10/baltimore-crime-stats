@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from './../../database/database.service';
-import { CrimeInfo, DistrictCounts } from './../../database/crime-info.model';
+import { CrimeInfo, DistrictCounts, TimeCount } from './../../database/crime-info.model';
 // https://www.amcharts.com/docs/v4/getting-started/using-typescript-or-es6/#Module_list
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
@@ -18,25 +18,26 @@ am4core.useTheme(am4themes_animated);
 export class ChartImplementComponent implements OnInit {
   // https://www.positronx.io/create-angular-7-firebase-crud-app-with-angular-material-7/
   callData: CrimeInfo[];
-  data: DistrictCounts[];
+  districtCountData: DistrictCounts[];
+  timeCountData: TimeCount[];
 
   constructor(private dbApi: DatabaseService) {
     this.callData = this.dbApi.GetCalls()
-    this.data = this.dbApi.GetNumCallsByDistrict();
+    this.districtCountData = this.dbApi.GetNumCallsByDistrict();
+    this.timeCountData = this.dbApi.GetNumCallsByCallDatetime();
   }
 
   ngOnInit(): void { }
 
   ngAfterViewInit(): void {}
 
-  onDisplayCallsByDistrictBarChart():void {
-    console.log('onDisplay()');
+  onDisplayCallsByDistrictBarChart(): void {
     /* Chart code */
     // Create chart instance
     let chart = am4core.create("num-calls-by-district-barchart", am4charts.XYChart);
 
     // add and sort data
-    chart.data = this.data;
+    chart.data = this.districtCountData;
     chart.data.sort((a, b) => (a.count > b.count ? -1 : 1));
 
     // Create axes
@@ -60,5 +61,72 @@ export class ChartImplementComponent implements OnInit {
     let columnTemplate = series.columns.template;
     columnTemplate.strokeWidth = 2;
     columnTemplate.strokeOpacity = 1;
+  }
+
+  onDisplayCallsOverTimeLineChart(): void {
+    /* chart code */
+    // Create chart instance
+    let chart = am4core.create("num-calls-over-time-linechart", am4charts.XYChart);
+
+    // add and sort data
+    chart.data = this.timeCountData;
+    chart.events.on("beforedatavalidated", (ev) => {
+      chart.data.sort((a, b) => {
+        return (a.calldatetime - a.calldatetime);
+      });
+    });
+
+    // Set input format for the dates
+    // chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+    // Create axes
+    let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+    let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.title.text = "# Calls";
+
+    // Create series
+    let series = chart.series.push(new am4charts.LineSeries());
+    series.dataFields.valueY = "count";
+    series.dataFields.dateX = "calldatetime";
+    dateAxis.baseInterval = {"timeUnit": "second", "count": 1}
+    series.tooltipText = "{count}";
+    series.strokeWidth = 2;
+    series.minBulletDistance = 15;
+
+    // Drop-shaped tooltips
+    series.tooltip.background.cornerRadius = 20;
+    series.tooltip.background.strokeOpacity = 0;
+    series.tooltip.pointerOrientation = "vertical";
+    series.tooltip.label.minWidth = 40;
+    series.tooltip.label.minHeight = 40;
+    series.tooltip.label.textAlign = "middle";
+    series.tooltip.label.textValign = "middle";
+
+    // Make bullets grow on hover
+    let bullet = series.bullets.push(new am4charts.CircleBullet());
+    bullet.circle.strokeWidth = 2;
+    bullet.circle.radius = 4;
+    bullet.circle.fill = am4core.color("#fff");
+
+    let bullethover = bullet.states.create("hover");
+    bullethover.properties.scale = 1.3;
+
+    // Make a panning cursor
+    chart.cursor = new am4charts.XYCursor();
+    chart.cursor.behavior = "panXY";
+    chart.cursor.xAxis = dateAxis;
+    chart.cursor.snapToSeries = series;
+
+    // Create vertical scrollbar and place it before the value axis
+    chart.scrollbarY = new am4core.Scrollbar();
+    chart.scrollbarY.parent = chart.leftAxesContainer;
+    chart.scrollbarY.toBack();
+
+    // Create a horizontal scrollbar and place it underneath the date axis
+    chart.scrollbarX = new am4charts.XYChartScrollbar();
+    chart.scrollbarX.parent = chart.bottomAxesContainer;
+
+    dateAxis.start = 0.79;
+    dateAxis.keepSelection = true;
   }
 }

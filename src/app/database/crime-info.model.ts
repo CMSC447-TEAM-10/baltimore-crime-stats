@@ -28,3 +28,8 @@ export interface DistrictCounts {
   district: string;
   count: number;
 }
+
+export interface TimeCount {
+    calldatetime: Date;
+    count: number;
+}
