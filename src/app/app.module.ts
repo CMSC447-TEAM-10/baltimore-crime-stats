@@ -22,6 +22,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 // google map api
 import { GoogleMapsModule } from '@angular/google-maps';
 
+/* Angular CRUD services */
+import { DatabaseService } from './database/database.service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -48,7 +51,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     // google maps module
     GoogleMapsModule
   ],
-  providers: [],
+  providers: [DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
