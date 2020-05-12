@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { GoogleMap } from '@angular/google-maps';
+import { DatabaseService } from './../../database/database.service';
+import { CrimeInfo } from './../../database/crime-info.model';
 
 @Component({
   selector: 'app-map-implement',
@@ -26,11 +27,26 @@ export class MapImplementComponent implements AfterViewInit {
     map: this.map,
   });
 
-  constructor() { }
+  callData: any = [];
+
+  constructor(private dbApi: DatabaseService) {
+    this.dbApi.GetCalls()
+    .snapshotChanges()
+    .subscribe(calls => {
+      calls.forEach(item => {
+        let a = item.payload.toJSON();
+        a['$KEY'] = item.key;
+        this.callData.push(a as CrimeInfo)
+      })
+      console.log(this.callData);
+    })
+  }
 
   ngAfterViewInit() {
     this.mapInitializer();
   }
+
+  // do whatever with callData
 
   mapInitializer() {
     this.map = new google.maps.Map(this.baltimore_map.nativeElement, this.mapOptions);
