@@ -64,7 +64,7 @@ export class CirclechartImplementComponent implements OnInit {
         "count": high
       }
     ];
-
+    
     let pieSeries = chart.series.push(new am4charts.PieSeries());
     pieSeries.dataFields.value = "cases";
     pieSeries.dataFields.category = "priority";
