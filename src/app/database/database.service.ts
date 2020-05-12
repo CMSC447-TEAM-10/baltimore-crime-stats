@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { CrimeInfo, DistrictCounts, DistrictCallback } from './crime-info.model';
+import { CrimeInfo, DistrictCounts } from './crime-info.model';
 
 @Injectable({
   providedIn: 'root'
