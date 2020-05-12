@@ -84,14 +84,14 @@ export class MapImplementComponent implements AfterViewInit {
   }
 
   onMedium() {
-    /*
     if (this.markerArr.length > 0) {
       this.setMapOnAll(null);
       this.markerArr = [];
     }
 
     for (var i = 0; i < this.callData.length; i++) {
-      if (this.callData[i].priority === "Medium") {
+      if (this.callData[i].priority === "Medium" && 
+        this.callData[i].location.latitude !== 0) {
         this.addMarker(
           this.callData[i].location.latitude,
           this.callData[i].location.longitude,
@@ -101,10 +101,6 @@ export class MapImplementComponent implements AfterViewInit {
     }
 
     this.setMapOnAll(this.map);
-    */
-   for (var i = 0; i < this.callData.length; i++) {
-     console.log("index: " + i + "  latitude: ");
-   }
   }
 
   onHigh() {
