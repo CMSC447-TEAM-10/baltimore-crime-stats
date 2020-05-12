@@ -24,12 +24,13 @@ export class MapImplementComponent implements AfterViewInit {
     return new google.maps.LatLng(latitude, longitude);
   }
 
-  addMarker (latitude: number, longitude: number, description: string) {
+  addMarker (latitude: number, longitude: number, description: string, markerColor: any) {
     const coordinate = this.setCoordinate(latitude, longitude);
     var marker = new google.maps.Marker(
       {
         position: coordinate,
-        title: description
+        title: description,
+        icon: markerColor
       }
     );
     this.markerArr.push(marker);
@@ -49,7 +50,7 @@ export class MapImplementComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const center = this.setCoordinate(this.latitude, this.longitude);
-    const mapOption = {center, zoom: 8};
+    const mapOption = {center, zoom: 11};
     this.map = new google.maps.Map(this.baltimore_map.nativeElement, mapOption);
   }
 
@@ -67,6 +68,10 @@ export class MapImplementComponent implements AfterViewInit {
       this.markerArr = [];
     }
 
+    let color = {                             
+      url: "http://maps.google.com/mapfiles/ms/icons/blue.png"
+    };
+
     // add markers to array
     for (var i = 0; i < this.callData.length; i++) {
       let call: CrimeInfo = this.callData[i];
@@ -74,7 +79,8 @@ export class MapImplementComponent implements AfterViewInit {
         this.addMarker(
           call.location.latitude,
           call.location.longitude,
-          call.description
+          call.description,
+          color
         )
       }
     }
@@ -89,6 +95,10 @@ export class MapImplementComponent implements AfterViewInit {
       this.markerArr = [];
     }
 
+    let color = {                             
+      url: "http://maps.google.com/mapfiles/ms/icons/yellow.png"
+    };
+
     for (var i = 0; i < this.callData.length; i++) {
       let call: CrimeInfo = this.callData[i];
       if (call.priority === "Medium") {
@@ -98,7 +108,8 @@ export class MapImplementComponent implements AfterViewInit {
           this.addMarker(
             call.location.latitude,
             call.location.longitude,
-            call.description
+            call.description,
+            color
           )
         }
       }
@@ -113,13 +124,18 @@ export class MapImplementComponent implements AfterViewInit {
       this.markerArr = [];
     }
 
+    let color = {                             
+      url: "http://maps.google.com/mapfiles/ms/icons/red.png"
+    };
+
     for (var i = 0; i < this.callData.length; i++) {
       let call: CrimeInfo = this.callData[i];
       if (call.priority === "High") {
         this.addMarker(
           call.location.latitude,
           call.location.longitude,
-          call.description
+          call.description,
+          color
         )
       }
     }
