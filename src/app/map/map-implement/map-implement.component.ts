@@ -69,11 +69,12 @@ export class MapImplementComponent implements AfterViewInit {
 
     // add markers to array
     for (var i = 0; i < this.callData.length; i++) {
-      if (this.callData[i].priority === "Low") {
+      let call: CrimeInfo = this.callData[i];
+      if (call.priority === "Low") {
         this.addMarker(
-          this.callData[i].location.latitude,
-          this.callData[i].location.longitude,
-          this.callData[i].description
+          call.location.latitude,
+          call.location.longitude,
+          call.description
         )
       }
     }
@@ -113,11 +114,12 @@ export class MapImplementComponent implements AfterViewInit {
     }
 
     for (var i = 0; i < this.callData.length; i++) {
-      if (this.callData[i].priority === "High") {
+      let call: CrimeInfo = this.callData[i];
+      if (call.priority === "High") {
         this.addMarker(
-          this.callData[i].location.latitude,
-          this.callData[i].location.longitude,
-          this.callData[i].description
+          call.location.latitude,
+          call.location.longitude,
+          call.description
         )
       }
     }
