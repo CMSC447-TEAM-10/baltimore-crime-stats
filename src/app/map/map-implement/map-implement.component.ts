@@ -18,7 +18,7 @@ export class MapImplementComponent implements AfterViewInit {
   markerArr = [];
 
   // store list of CrimeInfo as array
-  callData: any = [];
+  callData: CrimeInfo[];
 
   setCoordinate (latitude: number, longitude: number) {
     return new google.maps.LatLng(latitude, longitude);
@@ -37,15 +37,7 @@ export class MapImplementComponent implements AfterViewInit {
   }
 
   constructor(private dbApi: DatabaseService) {
-    this.dbApi.GetCalls()
-    .snapshotChanges()
-    .subscribe(calls => {
-      calls.forEach(item => {
-        let a = item.payload.toJSON();
-        a['$KEY'] = item.key;
-        this.callData.push(a as CrimeInfo)
-      })
-    })
+    this.callData = this.dbApi.GetCalls();
   }
 
   ngAfterViewInit() {
