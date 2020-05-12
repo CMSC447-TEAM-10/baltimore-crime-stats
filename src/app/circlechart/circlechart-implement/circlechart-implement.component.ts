@@ -22,7 +22,7 @@ export class CirclechartImplementComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onShow() {
+  onDisplayCallsByPriorityPieChart() {
     var high = 0;
     var medium = 0;
     var low = 0;
@@ -44,7 +44,7 @@ export class CirclechartImplementComponent implements OnInit {
       }
     }
 
-    let chart = am4core.create("chartdiv", am4charts.PieChart);
+    let chart = am4core.create("pct-calls-by-priority-piechart", am4charts.PieChart);
 
     chart.data = [
       {
