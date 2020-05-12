@@ -142,4 +142,58 @@ export class MapImplementComponent implements AfterViewInit {
 
     this.setMapOnAll(this.map);
   }
+
+  onAll() {
+    if (this.markerArr.length > 0) {
+      this.setMapOnAll(null);
+      this.markerArr = [];
+    }
+
+    let red_color = {                             
+      url: "http://maps.google.com/mapfiles/ms/icons/red.png"
+    };
+
+    let yellow_color = {                             
+      url: "http://maps.google.com/mapfiles/ms/icons/yellow.png"
+    };
+
+    let blue_color = {                             
+      url: "http://maps.google.com/mapfiles/ms/icons/blue.png"
+    };
+
+    for (var i = 0; i < this.callData.length; i++) {
+      let call: CrimeInfo = this.callData[i];
+      if (call.priority === "High") {
+        this.addMarker(
+          call.location.latitude,
+          call.location.longitude,
+          call.description,
+          red_color
+        )
+      }
+      else if (call.priority === "Medium") {
+        // only add the marker if location attribute exists
+        // and if longitude and latitude are Numeric
+        if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
+          this.addMarker(
+            call.location.latitude,
+            call.location.longitude,
+            call.description,
+            yellow_color
+          )
+        }
+      }
+      else if (call.priority === "Low") {
+        this.addMarker(
+          call.location.latitude,
+          call.location.longitude,
+          call.description,
+          blue_color
+        )
+      }
+      else {}
+    }
+
+    this.setMapOnAll(this.map);
+  }
 }
