@@ -23,3 +23,8 @@ export interface CrimeInfo {
   vrizones: string;
   location: Point;
 }
+
+export interface DistrictCounts {
+  district: string;
+  count: number;
+}

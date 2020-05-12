@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { CrimeInfo, DistrictCounts, DistrictCallback } from './crime-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,20 +9,46 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 // https://www.positronx.io/create-angular-7-firebase-crud-app-with-angular-material-7/
 // https://www.positronx.io/angular-7-firebase-5-crud-operations-with-reactive-forms/
 export class DatabaseService {
-  callsRef: AngularFireList<any>;
-  callRef: AngularFireObject<any>;
+  callRef: AngularFireList<any>;
 
-  constructor(private db: AngularFireDatabase) { }
-
-  /* Get a call */
-  GetCall(id: string) {
-    this.callRef = this.db.object('calls/' + id);
-    return this.callRef;
+  constructor(private db: AngularFireDatabase) {
+    this.callRef = this.db.list('calls');
   }
 
   /* Get list of calls */
-  GetCalls() {
-    this.callsRef = this.db.list('calls');
-    return this.callsRef;
+  GetCalls(): CrimeInfo[] {
+    let callData: CrimeInfo[] = [];
+    this.callRef
+    .snapshotChanges()
+    .subscribe(calls => {
+      calls.forEach(item => {
+        let a = item.payload.toJSON();
+        a['$KEY'] = item.key;
+        callData.push(a as CrimeInfo)
+      });
+    });
+    return callData;
+  }
+
+  /* Get number of calls per district */
+  // This function is async somehow and needs a callback function praram
+  GetNumCallsByDistrict(): DistrictCounts[] {
+    let districts: DistrictCounts[] = [];
+    this.callRef
+    .snapshotChanges()
+    .subscribe(calls => {
+      calls.forEach(item => {
+        let a = <CrimeInfo> item.payload.toJSON();
+        a['$KEY'] = item.key;
+        let district: string = a.district;
+        let index: number = districts.findIndex(x => x.district == district);
+        if (index === -1) {
+          districts.push({district: district, count: 1});
+        } else {
+          districts[index].count++;
+        }
+      });
+    });
+    return districts;
   }
 }
