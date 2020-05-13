@@ -33,3 +33,8 @@ export interface TimeCount {
     calldatetime: Date;
     count: number;
 }
+
+export interface CrimeType {
+    desc: string;
+    count: number;
+}
