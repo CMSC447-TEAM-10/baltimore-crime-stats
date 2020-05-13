@@ -70,9 +70,9 @@ export class ChartImplementComponent implements OnInit {
 
     // add and sort data
     chart.data = this.timeCountData;
-    chart.events.on("beforedatavalidated", (ev) => {
+    chart.events.on("beforedatavalidated", () => {
       chart.data.sort((a, b) => {
-        return (a.calldatetime - a.calldatetime);
+        return (a.calldatetime - b.calldatetime);
       });
     });
 
