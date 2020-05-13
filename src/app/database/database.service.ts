@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { CrimeInfo, DistrictCounts, TimeCount } from './crime-info.model';
+import { CrimeInfo, DistrictCounts, TimeCount, CrimeType } from './crime-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -70,5 +70,26 @@ export class DatabaseService {
       });
     });
     return calldatetimes;
+  }
+
+  /* Get number of calls by description */
+  GetNumCallsByDescription(): CrimeType[] {
+    let descriptions: CrimeType[] = [];
+    this.callRef
+    .snapshotChanges()
+    .subscribe(calls => {
+      calls.forEach(item => {
+        let a = <CrimeInfo> item.payload.toJSON();
+        a['$KEY'] = item.key;
+        let description: string = a.description;
+        let index: number = descriptions.findIndex(x => x.desc == description);
+        if (index === -1) {
+          descriptions.push({desc: description, count: 1});
+        } else {
+          descriptions[index].count++;
+        }
+      });
+    });
+    return descriptions;
   }
 }
