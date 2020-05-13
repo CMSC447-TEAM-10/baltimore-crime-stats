@@ -30,8 +30,6 @@ export class TreeImplementComponent implements OnInit {
     chart.data = this.descData;
     chart.data.sort((a, b) => (a.count < b.count ? -1 : 1));
 
-    console.table(chart.data);
-
     let series = chart.series.push(new am4plugins_forceDirected.ForceDirectedSeries());
     series.dataFields.value = "desc";
     series.dataFields.name = "count";
