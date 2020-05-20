@@ -17,7 +17,6 @@ import { TreeModule } from './tree/tree.module';
 // for firebase
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 // google map api
@@ -48,7 +47,6 @@ import { DatabaseService } from './database/database.service';
 
     // 3rd module
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
     AngularFireDatabaseModule,
 
     // google maps module
