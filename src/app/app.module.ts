@@ -11,7 +11,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppMainModule } from './app-main/app-main.module';
 import { MapModule } from './map/map.module';
 import { ChartModule } from './chart/chart.module';
-import { LoginModule } from './login/login.module';
 import { CirclechartModule } from './circlechart/circlechart.module';
 import { TreeModule } from './tree/tree.module';
 
@@ -39,7 +38,7 @@ import { DatabaseService } from './database/database.service';
 
     // App Modules
     AppMainModule, MapModule, ChartModule, 
-    LoginModule, CirclechartModule, TreeModule,
+    CirclechartModule, TreeModule,
 
     // This needs to be imported after all App Modules get imported
     AppRoutingModule,
