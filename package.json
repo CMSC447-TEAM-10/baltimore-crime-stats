@@ -28,7 +28,6 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@types/googlemaps": "^3.39.4",
-    "angularfire2": "^5.4.2",
     "bootstrap": "^4.4.1",
     "date-fns": "^2.13.0",
     "firebase": "^7.14.3",
