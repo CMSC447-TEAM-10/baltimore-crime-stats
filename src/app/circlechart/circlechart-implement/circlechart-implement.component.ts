@@ -27,20 +27,32 @@ export class CirclechartImplementComponent implements OnInit {
     var medium = 0;
     var low = 0;
     var non_emergency = 0;
+    var out_of_service = 0;
+    var emergency = 0;
+    var no_value = 0;
 
     for (var i = 0; i < this.callData.length; i++) {
       let call: CrimeInfo = this.callData[i];
-      if (call.priority === "High") {
+      if (call.priority && call.priority === "High") {
         high++;
       }
-      else if (call.priority === "Medium") {
+      else if (call.priority && call.priority === "Medium") {
         medium++;
       }
-      else if (call.priority === "Low") {
+      else if (call.priority && call.priority === "Low") {
         low++;
       }
-      else {
+      else if (call.priority && call.priority === "Out of Service") {
+        out_of_service++;
+      }
+      else if (call.priority && call.priority === "Emergency") {
+        emergency++;
+      }
+      else if (call.priority && call.priority === "Non-Emergency") {
         non_emergency++;
+      }
+      else {
+        no_value++;
       }
     }
 
@@ -62,6 +74,18 @@ export class CirclechartImplementComponent implements OnInit {
       {
         "priority": "High",
         "count": high
+      },
+      {
+        "priority": "Out of Service",
+        "count": out_of_service
+      },
+      {
+        "priority": "Emergency",
+        "count": emergency
+      },
+      {
+        "priority": "(No value)",
+        "count": no_value
       }
     ];
 
