@@ -67,7 +67,7 @@ export class MapImplementComponent implements AfterViewInit {
     // add markers to array
     for (var i = 0; i < this.callData.length; i++) {
       let call: CrimeInfo = this.callData[i];
-      if (call.priority === "Low") {
+      if (call.priority && call.priority === "Low") {
         // only add the marker if location attribute exists
         // and if longitude and latitude are Numeric
         if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
@@ -97,7 +97,7 @@ export class MapImplementComponent implements AfterViewInit {
 
     for (var i = 0; i < this.callData.length; i++) {
       let call: CrimeInfo = this.callData[i];
-      if (call.priority === "Medium") {
+      if (call.priority && call.priority === "Medium") {
         // only add the marker if location attribute exists
         // and if longitude and latitude are Numeric
         if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
@@ -126,7 +126,7 @@ export class MapImplementComponent implements AfterViewInit {
 
     for (var i = 0; i < this.callData.length; i++) {
       let call: CrimeInfo = this.callData[i];
-      if (call.priority === "High") {
+      if (call.priority && call.priority === "High") {
         // only add the marker if location attribute exists
         // and if longitude and latitude are Numeric
         if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
@@ -163,7 +163,7 @@ export class MapImplementComponent implements AfterViewInit {
 
     for (var i = 0; i < this.callData.length; i++) {
       let call: CrimeInfo = this.callData[i];
-      if (call.priority === "High") {
+      if (call.priority && call.priority === "High") {
         if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
           this.addMarker(
             call.location.latitude,
@@ -173,7 +173,7 @@ export class MapImplementComponent implements AfterViewInit {
           )
         }
       }
-      else if (call.priority === "Medium") {
+      else if (call.priority && call.priority === "Medium") {
         if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
           this.addMarker(
             call.location.latitude,
@@ -183,7 +183,7 @@ export class MapImplementComponent implements AfterViewInit {
           )
         }
       }
-      else if (call.priority === "Low") {
+      else if (call.priority && call.priority === "Low") {
         if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
           this.addMarker(
             call.location.latitude,
