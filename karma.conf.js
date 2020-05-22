@@ -21,6 +21,9 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml'],
+    files:[
+      'src/app/google.js'
+    ],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

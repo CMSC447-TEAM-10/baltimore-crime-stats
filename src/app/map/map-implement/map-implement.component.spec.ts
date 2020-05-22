@@ -22,8 +22,7 @@ describe('MapImplementComponent', () => {
     fixture.detectChanges();
   });
 
-  /*
   it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });
