@@ -8,10 +8,13 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
+  // We are using NavBar to display title
+  /*
   it('should display welcome message', () => {
     page.navigateTo();
     expect(page.getTitleText()).toEqual('baltimore-crime-stats app is running!');
   });
+  */
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
