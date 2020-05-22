@@ -164,16 +164,16 @@ export class MapImplementComponent implements AfterViewInit {
     for (var i = 0; i < this.callData.length; i++) {
       let call: CrimeInfo = this.callData[i];
       if (call.priority === "High") {
-        this.addMarker(
-          call.location.latitude,
-          call.location.longitude,
-          call.description,
-          red_color
-        )
+        if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
+          this.addMarker(
+            call.location.latitude,
+            call.location.longitude,
+            call.description,
+            yellow_color
+          )
+        }
       }
       else if (call.priority === "Medium") {
-        // only add the marker if location attribute exists
-        // and if longitude and latitude are Numeric
         if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
           this.addMarker(
             call.location.latitude,
@@ -184,12 +184,14 @@ export class MapImplementComponent implements AfterViewInit {
         }
       }
       else if (call.priority === "Low") {
-        this.addMarker(
-          call.location.latitude,
-          call.location.longitude,
-          call.description,
-          blue_color
-        )
+        if (call.location && isNumeric(call.location.longitude) && isNumeric(call.location.latitude)) {
+          this.addMarker(
+            call.location.latitude,
+            call.location.longitude,
+            call.description,
+            yellow_color
+          )
+        }
       }
       else {}
     }
