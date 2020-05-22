@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TreeImplementComponent } from './tree-implement.component';
+import { TreeRoutingModule } from '../tree-routing.module';
+import { TreeModule } from '../tree.module';
 
 describe('TreeImplementComponent', () => {
   let component: TreeImplementComponent;
@@ -8,7 +10,8 @@ describe('TreeImplementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TreeImplementComponent ]
+      declarations: [ TreeImplementComponent ],
+      imports: [ TreeRoutingModule, TreeModule ]
     })
     .compileComponents();
   }));
@@ -19,9 +22,7 @@ describe('TreeImplementComponent', () => {
     fixture.detectChanges();
   });
 
-  // no need to create
-  /*
   it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });

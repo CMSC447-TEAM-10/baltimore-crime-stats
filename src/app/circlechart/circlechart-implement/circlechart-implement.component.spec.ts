@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CirclechartImplementComponent } from './circlechart-implement.component';
+import { CirclechartRoutingModule } from '../circlechart-routing.module';
+import { CirclechartModule } from '../circlechart.module'; 
 
 describe('CirclechartImplementComponent', () => {
   let component: CirclechartImplementComponent;
@@ -8,7 +10,8 @@ describe('CirclechartImplementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CirclechartImplementComponent ]
+      declarations: [ CirclechartImplementComponent ],
+      imports: [ CirclechartModule, CirclechartRoutingModule]
     })
     .compileComponents();
   }));
@@ -19,9 +22,7 @@ describe('CirclechartImplementComponent', () => {
     fixture.detectChanges();
   });
 
-  // no need to create
-  /*
   it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });

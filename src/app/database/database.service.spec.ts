@@ -10,7 +10,6 @@ describe('DatabaseService', () => {
     service = TestBed.inject(DatabaseService);
   });
 
-  // no need to create
   /*
   it('should be created', () => {
     expect(service).toBeTruthy();

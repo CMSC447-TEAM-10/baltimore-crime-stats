@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChartImplementComponent } from './chart-implement.component';
+import { ChartRoutingModule } from '../chart-routing.module';
+import { ChartModule } from '../chart.module';
 
 describe('ChartImplementComponent', () => {
   let component: ChartImplementComponent;
@@ -8,7 +10,8 @@ describe('ChartImplementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChartImplementComponent ]
+      declarations: [ ChartImplementComponent ],
+      imports: [ ChartRoutingModule, ChartModule ]
     })
     .compileComponents();
   }));
@@ -19,9 +22,7 @@ describe('ChartImplementComponent', () => {
     fixture.detectChanges();
   });
 
-  // no need to create
-  /*
   it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });

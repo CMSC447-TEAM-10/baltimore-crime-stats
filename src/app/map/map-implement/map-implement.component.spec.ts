@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapImplementComponent } from './map-implement.component';
+import { MapModule } from '../map.module';
+import { MapRoutingModule } from '../map-routing.module';
 
 describe('MapImplementComponent', () => {
   let component: MapImplementComponent;
@@ -8,7 +10,8 @@ describe('MapImplementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MapImplementComponent ]
+      declarations: [ MapImplementComponent ],
+      imports: [ MapModule, MapRoutingModule ]
     })
     .compileComponents();
   }));
@@ -19,10 +22,8 @@ describe('MapImplementComponent', () => {
     fixture.detectChanges();
   });
 
-  // no need to create
   /*
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-  */
+  });*/
 });
