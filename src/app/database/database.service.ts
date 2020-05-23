@@ -39,6 +39,8 @@ export class DatabaseService {
       calls.forEach(item => {
         let a = <CrimeInfo> item.payload.toJSON();
         a['$KEY'] = item.key;
+        // skip data rows that have no district data
+        if (!a.district) return;  
         let district: string = a.district;
         let index: number = districts.findIndex(x => x.district == district);
         if (index === -1) {
@@ -60,6 +62,8 @@ export class DatabaseService {
       calls.forEach(item => {
         let a = <CrimeInfo> item.payload.toJSON();
         a['$KEY'] = item.key;
+        // skip data rows that have no calldatetime data
+        if (!a.calldatetime) return;
         let calldatetime: Date = new Date(a.calldatetime);
         let index: number = calldatetimes.findIndex(x => x.calldatetime.getHours() == calldatetime.getHours());
         if (index === -1) {
@@ -81,6 +85,8 @@ export class DatabaseService {
       calls.forEach(item => {
         let a = <CrimeInfo> item.payload.toJSON();
         a['$KEY'] = item.key;
+        // skip data rows that have no description data
+        if (!a.description) return;
         let description: string = a.description;
         let index: number = descriptions.findIndex(x => x.desc == description);
         if (index === -1) {
