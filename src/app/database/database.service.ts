@@ -85,8 +85,8 @@ export class DatabaseService {
       calls.forEach(item => {
         let a = <CrimeInfo> item.payload.toJSON();
         a['$KEY'] = item.key;
-        // skip data rows that have no description data
-        if (!a.description) return;
+        // No Value is also expected. So not skipping.
+        // if (!a.description) return;
         let description: string = a.description;
         let index: number = descriptions.findIndex(x => x.desc == description);
         if (index === -1) {
