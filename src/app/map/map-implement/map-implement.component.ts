@@ -169,7 +169,7 @@ export class MapImplementComponent implements AfterViewInit {
             call.location.latitude,
             call.location.longitude,
             call.description,
-            yellow_color
+            red_color
           )
         }
       }
@@ -189,7 +189,7 @@ export class MapImplementComponent implements AfterViewInit {
             call.location.latitude,
             call.location.longitude,
             call.description,
-            yellow_color
+            blue_color
           )
         }
       }
