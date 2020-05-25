@@ -36,9 +36,12 @@ export class TreeImplementComponent implements OnInit {
 
     // Add labels
     series.nodes.template.label.text = "{desc}";
+    series.nodes.template.label.truncate = true;
     series.fontSize = 10;
-    series.minRadius = 15;
+    series.minRadius = 40;
     series.maxRadius = 40;
+    series.centerStrength = 1.5;
+    series.manyBodyStrength = -2.5;
 
     // tooltip
     series.nodes.template.tooltipText = "{desc}: [bold]{count}[/]";
